@@ -1,7 +1,5 @@
 import { Card } from "@/components/Card";
 import { MainContainer } from "@/components/MainContainer";
-import { useFetch } from "@/hooks/useFetch";
-import cookie from "cookie";
 
 const SPOTIFY_ME_ENDPOINT = "https://api.spotify.com/v1/me";
 const SPOTIFY_PLAYLISTS_ENDPOINT = (userId) =>
