@@ -6,6 +6,8 @@
   "private": true,
   "workspaces": [
     "preview-endpoint",
-    "sign-and-verifying"
+    "sign-and-verifying",
+    "auth-code-flow/",
+    "auth-code-flow-pkce/"
   ]
 }
