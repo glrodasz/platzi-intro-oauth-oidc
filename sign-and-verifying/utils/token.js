@@ -2,13 +2,19 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
+import jwt from "jsonwebtoken";
+
+const SECRET = process.env.SECRET;
+const ONE_MINUTE_IN_MILLISECONDS = 60 * 1000
+
 export const signToken = (user) => {
   const payload = {
-    // TODO: add sub, name, and exp claims
+    sub: user.id,
+    name: user.fullname,
+    exp: Date.now() + ONE_MINUTE_IN_MILLISECONDS,
   };
 
-  // TODO: Return signed token
-  return null;
+  return jwt.sign(payload, SECRET)
 };
 
 export const verifyToken = (token) => {
