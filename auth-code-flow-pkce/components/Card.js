@@ -1,7 +1,7 @@
 export const Card = ({ userProfile, userTweets }) => {
   return (
     <div className="max-w-xl w-full bg-white rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row m-auto">
-      <div className="w-full md:w-2/5 h-80">
+      <div className="w-full md:w-2/5">
         <img
           className="object-center object-cover w-full h-full"
           src={userProfile?.profile_image_url.replace("_normal", "")}
