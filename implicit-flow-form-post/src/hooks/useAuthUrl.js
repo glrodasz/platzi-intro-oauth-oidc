@@ -8,10 +8,10 @@ const CLIENT_ID = import.meta.env.VITE_AUTH0_CLIENT_ID;
 const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
 
 export const useAuthUrl = () => {
-  const scopes = [];
+  const scopes = ["openid", "email", "read:sample"];
 
-  const state = "";
-  const nonce = "";
+  const state = useSession("state");
+  const nonce = useSession("nonce", true);
 
   const parameters = {
     response_type: "id_token token",
@@ -20,7 +20,8 @@ export const useAuthUrl = () => {
     redirect_uri: REDIRECT_URI,
     scope: scopes.join(" "),
     audience: AUTH0_API_AUDIENCE,
-    // FIXME: add state, nonce
+    state,
+    nonce
   };
 
   const queryParams = new URLSearchParams(parameters);

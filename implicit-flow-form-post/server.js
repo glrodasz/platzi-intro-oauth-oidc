@@ -19,13 +19,17 @@ const JWKS_URI = `https://${process.env.VITE_AUTH0_DOMAIN}/.well-known/jwks.json
 
 // Handle the callback route
 app.post("/callback", async (req, res) => {
-  const { /* FIXME: Get parameters */ } = req.body;
+  const { access_token, id_token, state } = req.body;
 
   // Validate the id_token and get the nonce
   const { nonce } = await validateTokenWithJwks(id_token, JWKS_URI);
 
-  // TODO: Send parameters to the client query string
-  const parameters = {};
+  const parameters = {
+    access_token,
+    id_token,
+    state,
+    nonce
+  };
 
   const query = new URLSearchParams(parameters);
 
