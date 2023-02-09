@@ -11,6 +11,7 @@
     "auth-code-flow-pkce",
     "implicit-flow",
     "client-credentials-flow",
-    "resource-owner-password-flow"
+    "resource-owner-password-flow",
+    "authjs-example"
   ]
 }
