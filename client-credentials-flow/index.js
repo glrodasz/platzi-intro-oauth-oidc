@@ -16,7 +16,7 @@ const DISCORD_USER_URL = "https://discord.com/api/users/@me";
 const DISCORD_GUILDS_URL = "https://discord.com/api/users/@me/guilds";
 
 app.get("/", async (req, res) => {
-  const scopes = [];
+  const scopes = ["identify", "guilds"];
 
   const options = {
     method: "POST",
@@ -27,13 +27,13 @@ app.get("/", async (req, res) => {
       grant_type: "client_credentials",
       client_id: CLIENT_ID,
       scope: scopes.join(" "),
-      // FIXME: add client secret
+      client_secret: CLIENT_SECRET,
     }),
   };
 
   try {
     const response = await fetch(DISCORD_TOKEN_URL, options);
-    const { /* FIXME: get Access Token */ } = await response.json();
+    const { access_token: accessToken } = await response.json();
 
     const userData = await fetchWithToken(DISCORD_USER_URL, accessToken);
     const guildData = await fetchWithToken(DISCORD_GUILDS_URL, accessToken);
