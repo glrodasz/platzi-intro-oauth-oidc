@@ -21,14 +21,12 @@ function App() {
   const authUrl = useAuthUrl();
 
   useEffect(() => {
-    // TODO: Get the Access Token from the URL
-    const queryAccessToken = null
+    const queryAccessToken = getHashParams("access_token");
  
-    // TODO: Get the State from the URL and session storage
-    const queryState = null
-    const sessionState = null
+    const queryState = getHashParams("state");
+    const sessionState = sessionStorage.getItem("state");
 
-    if ( /* TODO: Validate the state */) {
+    if (queryState !== sessionState && queryAccessToken) {
       console.error(new Error("ERROR_STATE_MISMATCH"));
       cleanUrlHash();
       return setAccessToken(null);
