@@ -9,7 +9,7 @@ const TWITTER_TOKEN_URL = "https://api.twitter.com/2/oauth2/token";
 export default async function handler(req, res) {
   const cookies = cookie.parse(req.headers.cookie);
 
-  if (/* TODO: Check if state match */) {
+  if (req.query.state !== cookies.state) {
     res.writeHead(302, { Location: "/#?error=ERROR_STATE_MISMATCH" });
     res.end();
   }
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
       redirect_uri: REDIRECT_URI,
       grant_type: "authorization_code",
       client_id: CLIENT_ID,
-      // FIXME: add code_verifier
+      code_verifier: cookies.verifier,
     }),
   };
 
