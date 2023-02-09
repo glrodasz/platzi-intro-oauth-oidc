@@ -11,7 +11,7 @@ const PASSWORD = process.env.PASSWORD;
 const AUTH0_TOKEN_URL = `https://${AUTH0_DOMAIN}/oauth/token`;
 
 export default async function handler(req, res) {
-  const scopes = [];
+  const scopes = ["read:sample"];
 
   const options = {
     method: "POST",
@@ -23,7 +23,9 @@ export default async function handler(req, res) {
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
       scope: scopes.join(" "),
-      // FIXME: send audience, username, and password
+      audience: AUTH0_API_AUDIENCE,
+      username: USERNAME,
+      password: PASSWORD,
     }),
   };
 
