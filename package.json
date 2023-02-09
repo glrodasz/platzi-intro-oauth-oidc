@@ -7,7 +7,10 @@
   "workspaces": [
     "preview-endpoint",
     "sign-and-verifying",
-    "auth-code-flow/",
-    "auth-code-flow-pkce/"
+    "auth-code-flow",
+    "auth-code-flow-pkce",
+    "implicit-flow",
+    "client-credentials-flow",
+    "resource-owner-password-flow"
   ]
 }
